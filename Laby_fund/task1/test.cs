@@ -9,7 +9,8 @@ class Test
             var stud = new Student("Nikita", "Smirnov", 
                 "Evhgenoevich", "M8O-211B-21", Practice.Cs);
             Console.WriteLine($"My name is {stud.NameField}\nMy surname is {stud.SurnameField}\nMy patronymic is {stud.PatronymicField}\n" +
-                              $"I am from group {stud.GroupField}\nThe course is {stud.CourseNumber}\nI practice on {stud.PracticeType}");
+                              $"I am from group {stud.GroupField}\nThe course is {stud.CourseNumber}\nI practice on {stud.PracticeType}\n");
+            Console.WriteLine($"Here is my visit card:\n{stud}");
         }
         catch (ArgumentNullException e)
         {

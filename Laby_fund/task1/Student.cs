@@ -18,7 +18,8 @@ public class Student
         GroupField = group ?? throw new ArgumentNullException(nameof(group));
         PracticeField = choice ?? throw new ArgumentNullException(nameof(choice));
     }
-
+    
+    // Properties
     public string NameField
     {
         get;
@@ -67,4 +68,57 @@ public class Student
 
         }
     }
+    // properties end
+    
+    // overrides
+    public override string ToString()
+    {
+        return $"Student: {SurnameField} {NameField} {PatronymicField}\nGroup: {GroupField}\nPractice type: {PracticeType}\nCurrent course: {CourseNumber}";
+    }
+
+    public override bool Equals(object? obj)
+    {
+        if (obj is null)
+        {
+            return false;
+        }
+
+        if (obj is Student stud)
+        {
+            return Equals(stud);
+        }
+
+        if (obj is string @string)
+        {
+            return Equals(@string);
+        }
+
+        if (obj is Practice @practice)
+        {
+            return @practice == PracticeField;
+        }
+
+        if (obj is int @int)
+        {
+            return Equals(@int);
+        }
+        return false;
+    }
+
+    public bool Equals(string @string)
+    {
+        return NameField.Equals(@string) || PatronymicField.Equals(@string) || GroupField.Equals(@string) ||
+               SurnameField.Equals(@string);
+    }
+
+    public bool Equals(int @int)
+    {
+        return CourseNumber.Equals(@int);
+    }
+
+    public override int GetHashCode()
+    {
+        return NameField.GetHashCode() + SurnameField.GetHashCode() + PatronymicField.GetHashCode() + GroupField.GetHashCode() + PracticeType.GetHashCode();
+    }
+    // overrides end
 }
