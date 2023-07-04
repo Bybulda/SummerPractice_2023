@@ -8,7 +8,10 @@ public enum Practice: int{
     Structures
 }
 
-public class Student
+public class Student: 
+    IEquatable<int>, 
+    IEquatable<string>, 
+    IEquatable<Student>
 {
     public Student(string? name, string? surname, string? patronymic, string? group, Practice? choice)
     {
@@ -23,31 +26,26 @@ public class Student
     public string NameField
     {
         get;
-        private set;
     }
 
     public string SurnameField
     {
         get;
-        private set;
     }
 
     public string PatronymicField
     {
         get;
-        private set;
     }
 
     public string GroupField
     {
         get;
-        private set;
     }
     
     private Practice PracticeField
     {
         get;
-        set;
     }
 
     public string PracticeType
@@ -105,7 +103,7 @@ public class Student
         return false;
     }
 
-    public bool Equals(string @string)
+    public bool Equals(string? @string)
     {
         return NameField.Equals(@string) || PatronymicField.Equals(@string) || GroupField.Equals(@string) ||
                SurnameField.Equals(@string);
@@ -114,6 +112,16 @@ public class Student
     public bool Equals(int @int)
     {
         return CourseNumber.Equals(@int);
+    }
+
+    public bool Equals(Student? @student)
+    {
+        if (@student is null)
+        {
+            return false;
+        }
+        return NameField.Equals(@student.NameField) && PatronymicField.Equals(@student.PatronymicField) && GroupField.Equals(@student.GroupField) &&
+               SurnameField.Equals(@student.SurnameField) && PracticeType == @student.PracticeType;
     }
 
     public override int GetHashCode()
