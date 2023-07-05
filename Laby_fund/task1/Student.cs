@@ -126,7 +126,8 @@ public class Student:
 
     public override int GetHashCode()
     {
-        return NameField.GetHashCode() + SurnameField.GetHashCode() + PatronymicField.GetHashCode() + GroupField.GetHashCode() + PracticeType.GetHashCode();
+        return HashCode.Combine(NameField.GetHashCode(), SurnameField.GetHashCode(), PatronymicField.GetHashCode(),
+            GroupField.GetHashCode(), PracticeField.GetHashCode());
     }
     // overrides end
 }
