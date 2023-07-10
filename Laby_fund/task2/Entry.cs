@@ -3,7 +3,7 @@
 
 public class Entry
 {
-    static void Main()
+    static void hain()
     {
         var arr = new int[] { 1, 2, 3 };
         var cp = ComparerE<int>.Instance;
