@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Data;
+using System.Drawing;
 using System.Text;
 using Laby_fund.task3;
 using Rule = Laby_fund.task3.Rule;
@@ -259,6 +260,19 @@ public class LinkedList<T>: IEquatable<LinkedList<T>>, ICloneable, IEnumerable<T
             act(current.DataField);
             current = current.NextNode;
         } while (current != null);
+    }
+
+    public static LinkedList<T> operator *(LinkedList<T> lst1, LinkedList<T> lst2)
+    {
+        if (lst1 is null || lst2 is null) throw new ArgumentException();
+        var size = lst1.Lenght < lst2.Lenght ? lst1.Lenght : lst2.Lenght;
+        var res = new LinkedList<T>();
+        for (int i = 0; i < size; i++)
+        {
+            res.PushBack((dynamic?)lst1[i] * lst2[i]);
+        }
+
+        return res;
     }
 
     public static bool operator ==(LinkedList<T> obj, LinkedList<T> obj2)
